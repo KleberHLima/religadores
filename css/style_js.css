@@ -13,3 +13,18 @@
         grid-template-columns: 1fr;
     }
 }
+/* começa fechado */
+.seletor .cards_img {
+    display: none;
+}
+
+/* quando ativo, abre */
+.seletor.ativo .cards_img {
+    display: grid;
+}
+.subtitulos {
+    cursor: pointer;
+}
+.subtitulos:active {
+    opacity: 0.7;
+}
