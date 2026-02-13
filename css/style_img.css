@@ -37,12 +37,12 @@ img {
   display: block;
 }
 .cards_img {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 por linha */
-  gap: 9px;
-  max-width: auto;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+    justify-content: center;
+    gap: 20px;
 }
+
 
 .cards {
   background: #fff;

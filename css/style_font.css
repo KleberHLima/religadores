@@ -27,7 +27,7 @@
     padding: 0px;
 }
 body{
-    background: var(#d3d4d4);
+    background: var(--cor0);
     font-family: var(--fonte-padrao);
 }
 main {
@@ -36,7 +36,7 @@ main {
     padding: 10px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    background: #0f1063;    
+    background: var(--cor2);    
     box-shadow: 0px 9px 9px #00000064;
 }
 img {
@@ -94,8 +94,8 @@ div.videos > iframe {
     font-family: var(--fonte-destaque);
     font-size: 36px;
     text-align: center;
-    padding: 10px;
-    margin-top: auto;
+    padding-top: 15px;
+    margin-bottom: auto;
 }
 .subtitulos {
     font-family: var(--fonte-destaque);
@@ -143,4 +143,130 @@ aside > p
     text-align: justify;
     text-indent: 35px;
     line-height: 1.5em;
+}
+/* ===============================
+   BLOCO SELETOR (ACORDEÃO)
+================================ */
+.seletor {
+    margin: 25px auto;
+    border-radius: 14px;
+    background: var(--cor1);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+/* ===============================
+   TÍTULO CLICÁVEL
+================================ */
+.seletor > .subtitulos {
+    background: linear-gradient(to right, var(--cor5), var(--cor4));
+    color: var(--cor0);
+    padding: 16px 22px;
+    margin: 0;
+    font-size: 20px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.seletor > .subtitulos:hover {
+    background: linear-gradient(to right, var(--cor4), var(--cor5));
+}
+
+/* Ícone + / - */
+.seletor > .subtitulos::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* Quando ativo */
+.seletor.ativo > .subtitulos::after {
+    content: "−";
+}
+
+/* ===============================
+   CONTAINER DOS CARDS
+================================ */
+.seletor .cards_img {
+    display: none;
+    padding: 20px;
+    background: var(--cor0);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.seletor.ativo .cards_img {
+    display: grid;
+    animation: abrirBloco 0.35s ease;
+}
+
+/* ===============================
+   CARD INDIVIDUAL
+================================ */
+.cards {
+    background: var(--cor0);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cards:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.cards p {
+    font-size: 14px;
+    color: #222;
+}
+
+/* Imagens */
+.cards img {
+    margin-top: 12px;
+    border-radius: 8px;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 900px) {
+    .seletor .cards_img {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .seletor .cards_img {
+        grid-template-columns: 1fr;
+    }
+
+    .seletor > .subtitulos {
+        font-size: 18px;
+        padding: 14px 18px;
+    }
+}
+
+/* ===============================
+   ANIMAÇÃO
+================================ */
+@keyframes abrirBloco {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+h1{
+    padding-top: 15px;
 }
