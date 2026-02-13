@@ -5,16 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
     cards.forEach(card => {
 
         const titulo = card.querySelector("h2");
-        const elementos = Array.from(card.children).filter(el => el.tagName !== "H2");
 
-        // Criar wrapper para animar suavemente
+        // Criar wrapper interno
         const wrapper = document.createElement("div");
         wrapper.style.overflow = "hidden";
         wrapper.style.height = "0";
         wrapper.style.transition = "height 0.4s ease";
 
-        // Move p e img para dentro do wrapper
-        elementos.forEach(el => wrapper.appendChild(el));
+        // Move tudo menos o H2 para dentro do wrapper
+        Array.from(card.children).forEach(el => {
+            if (el.tagName !== "H2") {
+                wrapper.appendChild(el);
+            }
+        });
+
         card.appendChild(wrapper);
 
         titulo.style.cursor = "pointer";
@@ -23,12 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const isOpen = wrapper.style.height !== "0px" && wrapper.style.height !== "";
 
-            // Fecha todos
-            document.querySelectorAll(".cards > div").forEach(w => {
-                w.style.height = "0";
-            });
-
-            if (!isOpen) {
+            if (isOpen) {
+                // FECHA
+                wrapper.style.height = "0";
+            } else {
+                // ABRE
                 wrapper.style.height = wrapper.scrollHeight + "px";
             }
 
