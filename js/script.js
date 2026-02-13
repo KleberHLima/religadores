@@ -1,20 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const titulo = document.querySelector(".seletor");
-    const cards = document.querySelectorAll(".cards");
+    const seletores = document.querySelectorAll(".seletor");
 
-    cards.forEach(card => {
-        card.style.display = "none";
-    });
+    seletores.forEach(function(seletor) {
 
-    titulo.style.cursor = "pointer";
+        const titulo = seletor.querySelector("h2");
+        const container = seletor.querySelector(".cards_img");
 
-    titulo.addEventListener("click", function () {
+        // começa fechado
+        container.style.display = "none";
 
-        const aberto = cards[0].style.display === "block";
+        titulo.style.cursor = "pointer";
 
-        cards.forEach(card => {
-            card.style.display = aberto ? "none" : "block";
+        titulo.addEventListener("click", function () {
+
+            const aberto = container.style.display === "grid";
+
+            container.style.display = aberto ? "none" : "grid";
+
         });
 
     });
