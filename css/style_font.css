@@ -36,7 +36,7 @@ main {
     padding: 10px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    background: var(--cor2);    
+    background: var(--cor0);    
     box-shadow: 0px 9px 9px #00000064;
 }
 img {
@@ -46,7 +46,7 @@ header {
     background-image: linear-gradient(to bottom, var(--cor5), var(--cor4));
     color: white;
     text-align: center;
-    height: 90px;
+    min-height: 60px;
     width: auto;
 }
 aside {
@@ -71,11 +71,11 @@ ul {
     box-shadow: 7px 7px 7px #0000005e;
 }
 footer {
-    background-color: black;
-    color: white;
+    background-color: var(--cor2);
+    color: #1f4e79;
     text-align: center;
-    padding: 10px;
-    font-size: 14px;
+    padding: 7px;
+    font-size: 11px;
 }
 div.videos {
     margin: 0px -10px 5px -10px;
@@ -90,15 +90,9 @@ div.videos > iframe {
     width: 90%;
     height: 90%;
 }*/
-#titulo_principal {
-    font-family: var(--fonte-destaque);
-    font-size: 36px;
-    text-align: center;
-    padding-top: 15px;
-    margin-bottom: auto;
-}
+
 .subtitulos {
-    font-family: var(--fonte-destaque);
+    font-family: 'Times New Roman', Times, serif;
     font-size: 26px;
     color: var(--cor5);
     padding: 7px;
@@ -109,8 +103,8 @@ div.videos > iframe {
 #menu {
     background: var(--cor5);
     text-align: center;
-    font-size: 14px;
-    padding: 7px 14px;
+    font-size: 12px;
+    padding: 7px 0px;
     box-shadow: 0px 7px 7px #00000064;
 }
 #menu > a {
@@ -144,9 +138,6 @@ aside > p
     text-indent: 35px;
     line-height: 1.5em;
 }
-/* ===============================
-   BLOCO SELETOR (ACORDEÃO)
-================================ */
 .seletor {
     margin: 25px auto;
     border-radius: 14px;
@@ -155,9 +146,6 @@ aside > p
     overflow: hidden;
 }
 
-/* ===============================
-   TÍTULO CLICÁVEL
-================================ */
 .seletor > .subtitulos {
     background: linear-gradient(to right, var(--cor5), var(--cor4));
     color: var(--cor0);
@@ -168,6 +156,7 @@ aside > p
     cursor: pointer;
     position: relative;
     transition: background 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .seletor > .subtitulos:hover {
@@ -269,4 +258,9 @@ aside > p
 }
 h1{
     padding-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 24px;
+}
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
