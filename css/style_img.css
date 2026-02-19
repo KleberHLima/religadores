@@ -74,37 +74,77 @@ img {
     grid-template-columns: 1fr;
   }
 }
+/* ==========================
+   LIGHTBOX BASE
+========================== */
+
 .lightbox {
     display: none;
     position: fixed;
-    z-index: 9999;
     inset: 0;
     background: rgba(0,0,0,0.95);
-    text-align: center;
-    padding: 40px 20px;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .lightbox-content {
-    max-width: 95%;
-    max-height: 95vh;
-    margin: auto;
+    width: 100%;
+    max-width: 1200px; /* limite no desktop */
+    text-align: center;
 }
+
+/* ==========================
+   IMAGEM RESPONSIVA
+========================== */
 
 .lightbox-img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 80vh; /* adapta à altura da tela */
     width: auto;
     height: auto;
-    object-fit: none; /* mantém proporção */
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
+
+/* ==========================
+   TEXTO
+========================== */
 
 .lightbox-text {
     color: white;
     margin-top: 15px;
-    font-size: 18px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: clamp(14px, 2vw, 20px);
+    padding: 0 15px;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px) {
+
+    .lightbox {
+        padding: 15px;
+    }
+
+    .lightbox-img {
+        width: 100%;
+        max-height: 65vh; /* deixa espaço para texto no celular */
+    }
+
+    .lightbox-text {
+        font-size: clamp(14px, 4vw, 18px);
+    }
+
+}
+
 }
 
 .close {
