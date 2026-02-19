@@ -10,13 +10,14 @@
 
 :root {
     /*--- Paleta de cores padrão do Site ---*/
-    --cor5: #155f82;
-    --cor4: #2f66b3;
-    --cor2: #b3c6e6;
-    --cor3: #9bf2a1;
-    --cor1: #e6e6e6;
     --cor0: #ffffff;
-    --cor6: #02200f;
+    --cor1: #000000;
+    --cor2: #5ABF56;
+    --cor3: #3FBF90;
+    --cor4: #38A692;
+    --cor5: #235B8C;
+    --cor6: #024e12;
+    --cor7: #036303;
     /*--- Paleta de fontes padrão do Site*/
     --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
     --fonte-destaque: Arial, cursive;
@@ -71,8 +72,8 @@ ul {
     box-shadow: 7px 7px 7px #0000005e;
 }
 footer {
-    background-color: var(--cor2);
-    color: #1f4e79;
+    background-color: var(--cor5);
+    color: var(--cor0);
     text-align: center;
     padding: 7px;
     font-size: 11px;
@@ -142,12 +143,12 @@ aside > p
     margin: 25px auto;
     border-radius: 14px;
     background: var(--cor1);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    box-shadow: 10px 10px 10px #00000069;
     overflow: hidden;
 }
 
 .seletor > .subtitulos {
-    background: linear-gradient(to right, var(--cor5), var(--cor4));
+    background: linear-gradient(to right, var(--cor7), var(--cor6));
     color: var(--cor0);
     padding: 16px 22px;
     margin: 0;
@@ -263,4 +264,7 @@ h1{
 }
 h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+p > strong {
+    color: red;
 }
