@@ -27,7 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
    LIGHTBOX DAS IMAGENS
 ========================== */
 
-const images = document.querySelectorAll(".zoom-img");
+/* ==========================
+   LIGHTBOX POR BLOCO (SELETOR)
+========================== */
+
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const lightboxText = document.getElementById("lightbox-text");
@@ -36,36 +39,54 @@ const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
 let currentIndex = 0;
+let currentImages = []; // imagens do seletor atual
 
-function showImage(index) {
-    const card = images[index].closest(".cards");
+// adicionar evento para cada imagem
+document.querySelectorAll(".zoom-img").forEach((img) => {
+
+    img.addEventListener("click", function () {
+
+        const seletor = img.closest(".seletor");
+        currentImages = seletor.querySelectorAll(".zoom-img");
+
+        currentIndex = Array.from(currentImages).indexOf(img);
+
+        showImage();
+
+    });
+
+});
+
+function showImage() {
+
+    const card = currentImages[currentIndex].closest(".cards");
     const texto = card.querySelector("p").innerHTML;
 
-    lightbox.style.display = "block";
-    lightboxImg.src = images[index].src;
+    lightbox.style.display = "flex";
+    lightboxImg.src = currentImages[currentIndex].src;
     lightboxText.innerHTML = texto;
 
-    currentIndex = index;
+    // controla visibilidade das setas
+    prevBtn.style.display = currentIndex === 0 ? "none" : "block";
+    nextBtn.style.display = currentIndex === currentImages.length - 1 ? "none" : "block";
 }
 
-images.forEach((img, index) => {
-    img.addEventListener("click", () => {
-        showImage(index);
-    });
+nextBtn.addEventListener("click", () => {
+    if (currentIndex < currentImages.length - 1) {
+        currentIndex++;
+        showImage();
+    }
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        showImage();
+    }
 });
 
 closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
-});
-
-nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % images.length;
-    showImage(currentIndex);
-});
-
-prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    showImage(currentIndex);
 });
 
 lightbox.addEventListener("click", (e) => {
@@ -73,5 +94,4 @@ lightbox.addEventListener("click", (e) => {
         lightbox.style.display = "none";
     }
 });
-
 });

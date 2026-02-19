@@ -95,7 +95,7 @@ img {
     max-height: 80vh;
     width: auto;
     height: auto;
-    object-fit: contain; /* mantém proporção */
+    object-fit: none; /* mantém proporção */
 }
 
 .lightbox-text {
