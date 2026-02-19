@@ -1,68 +1,89 @@
 @charset "UTF-8";
 
-.galeria{
+/* ==========================
+   RESET BÁSICO
+========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ==========================
+   GALERIA (se usar)
+========================== */
+
+.galeria {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* centraliza quando tem menos de 4 */
+  justify-content: center;
   gap: 15px;
 }
 
 .galeria a > img {
-  width: calc(60% - 15px); /* 4 por linha */
-  max-width: 600px;       /* opcional */
+  width: calc(60% - 15px);
+  max-width: 600px;
   height: auto;
 }
 
-/* Responsivo */
 @media (max-width: 700px) {
   .galeria a > img {
-    width: calc(33.33% - 15px); /* 3 por linha */
+    width: calc(33.33% - 15px);
   }
 }
 
 @media (max-width: 600px) {
   .galeria a > img {
-    width: calc(50% - 15px); /* 2 por linha */
+    width: calc(50% - 15px);
   }
 }
 
 @media (max-width: 300px) {
   .galeria a > img {
-    width: 100%; /* 1 por linha */
+    width: 100%;
   }
 }
-img {
-  max-width: 100%;
-  margin: auto;
-  display: block;
-}
-.cards_img {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
-    justify-content: center;
-    gap: 15px;
-    box-shadow: 7px 7px 15px #00000069;
-}
 
+/* ==========================
+   CARDS
+========================== */
+
+.cards_img {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 🔥 agora cresce no desktop */
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+}
 
 .cards {
   background: #bdbdbd85;
-  padding: 7px;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 7px 7px 15px #00000069;
   text-align: center;
 }
 
+/* IMAGEM RESPONSIVA CORRIGIDA */
 .cards img {
-  width: auto;
-  height: 500px;
-  margin: auto;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  width: 100%;
+  max-width: 100%;
+  height: auto;              /* 🔥 removido height fixo */
+  display: block;
+  margin: 15px auto;
   border-radius: 8px;
 }
 
-/* Responsivo */
+/* ==========================
+   RESPONSIVO GRID
+========================== */
+
 @media (max-width: 900px) {
   .cards_img {
     grid-template-columns: repeat(2, 1fr);
@@ -74,98 +95,87 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
 /* ==========================
-   LIGHTBOX BASE
+   LIGHTBOX
 ========================== */
 
 .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
+  display: none;   /* 🔥 começa escondido */
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 
-    padding: 20px;
-    box-sizing: border-box;
+  padding: 20px;
 }
 
 .lightbox-content {
-    width: 100%;
-    max-width: 1200px; /* limite no desktop */
-    text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
 }
 
-/* ==========================
-   IMAGEM RESPONSIVA
-========================== */
-
+/* IMAGEM DO LIGHTBOX */
 .lightbox-img {
-    max-width: 100%;
-    max-height: 80vh; /* adapta à altura da tela */
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
+  max-width: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
-/* ==========================
-   TEXTO
-========================== */
-
+/* TEXTO DO LIGHTBOX */
 .lightbox-text {
-    color: white;
-    margin-top: 15px;
-    font-size: clamp(14px, 2vw, 20px);
-    padding: 0 15px;
+  color: white;
+  margin-top: 15px;
+  font-size: clamp(14px, 2vw, 20px);
+  padding: 0 15px;
 }
 
-/* ==========================
-   MOBILE
-========================== */
-
+/* MOBILE */
 @media (max-width: 768px) {
 
-    .lightbox {
-        padding: 15px;
-    }
+  .lightbox {
+    padding: 15px;
+  }
 
-    .lightbox-img {
-        width: 100%;
-        max-height: 65vh; /* deixa espaço para texto no celular */
-    }
+  .lightbox-img {
+    width: 100%;
+    max-height: 65vh;
+  }
 
-    .lightbox-text {
-        font-size: clamp(14px, 4vw, 18px);
-    }
-
+  .lightbox-text {
+    font-size: clamp(14px, 4vw, 18px);
+  }
 }
 
-}
+/* BOTÕES LIGHTBOX */
 
 .close {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
 }
 
 .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    padding: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  padding: 20px;
 }
 
 .prev { left: 20px; }

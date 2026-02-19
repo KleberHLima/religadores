@@ -22,13 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     });
-
 /* ==========================
-   LIGHTBOX DAS IMAGENS
-========================== */
-
-/* ==========================
-   LIGHTBOX POR BLOCO (SELETOR)
+   LIGHTBOX ISOLADO POR BLOCO
 ========================== */
 
 const lightbox = document.getElementById("lightbox");
@@ -39,19 +34,24 @@ const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
 let currentIndex = 0;
-let currentImages = []; // imagens do seletor atual
+let currentImages = [];
 
-// adicionar evento para cada imagem
-document.querySelectorAll(".zoom-img").forEach((img) => {
+// pega apenas imagens dentro dos cards
+document.querySelectorAll(".seletor").forEach(seletor => {
 
-    img.addEventListener("click", function () {
+    const images = seletor.querySelectorAll(".cards_img .zoom-img");
 
-        const seletor = img.closest(".seletor");
-        currentImages = seletor.querySelectorAll(".zoom-img");
+    images.forEach((img, index) => {
 
-        currentIndex = Array.from(currentImages).indexOf(img);
+        img.addEventListener("click", function (e) {
 
-        showImage();
+            e.stopPropagation(); // impede conflito
+
+            currentImages = images;
+            currentIndex = index;
+
+            showImage();
+        });
 
     });
 
@@ -59,14 +59,17 @@ document.querySelectorAll(".zoom-img").forEach((img) => {
 
 function showImage() {
 
+    if (!currentImages.length) return; // proteção extra
+
     const card = currentImages[currentIndex].closest(".cards");
-    const texto = card.querySelector("p").innerHTML;
+    if (!card) return; // proteção extra
+
+    const texto = card.querySelector("p")?.innerHTML || "";
 
     lightbox.style.display = "flex";
     lightboxImg.src = currentImages[currentIndex].src;
     lightboxText.innerHTML = texto;
 
-    // controla visibilidade das setas
     prevBtn.style.display = currentIndex === 0 ? "none" : "block";
     nextBtn.style.display = currentIndex === currentImages.length - 1 ? "none" : "block";
 }
@@ -94,4 +97,5 @@ lightbox.addEventListener("click", (e) => {
         lightbox.style.display = "none";
     }
 });
+
 });
