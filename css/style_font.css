@@ -32,9 +32,9 @@ body{
     font-family: var(--fonte-padrao);
 }
 main {
-    max-width: auto;
-    margin: auto;
-    padding: 10px;
+    max-width: 100%;
+    margin: 0px 10px;
+    padding: auto;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     background: var(--cor0);    
@@ -140,7 +140,7 @@ aside > p
     line-height: 1.5em;
 }
 .seletor {
-    margin: 25px auto;
+    margin: 25px;
     border-radius: 14px;
     background: var(--cor1);
     box-shadow: 10px 10px 10px #00000069;
@@ -267,4 +267,28 @@ h2 {
 }
 p > strong {
     color: red;
+}
+
+
+/* ----------------------------------------------------------------------------------------- */
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; /* Faz o conteúdo ocupar o espaço disponível */
+}
+
+footer {
+    background-color: #2f5d86; /* sua cor */
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
